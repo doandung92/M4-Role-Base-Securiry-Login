@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("USER","ADMIN")
                 .antMatchers("/").permitAll()
-                .and().formLogin().successHandler(customSuccessHandler);
+                .and().formLogin().successHandler(customSuccessHandler)
+                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
     }
     @Bean
     public PasswordEncoder getPasswordEncoder(){
